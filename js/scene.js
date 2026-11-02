@@ -19,7 +19,13 @@ const BG = new THREE.Color("#08090a").convertSRGBToLinear();
 
 export function createScene(canvas, { onReady } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  /* Phone GPUs choke on fullscreen post at DPR 2 — that is how context-loss
+     white frames happen. 1.5 is visually indistinguishable here. */
+  const maxDpr = window.innerWidth < 820 ? 1.5 : 2;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxDpr));
+  /* Fill buffers with the page background from frame one: an uncleared
+     framebuffer reads as white garbage on some mobile GPUs. */
+  renderer.setClearColor(BG, 1);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   /* ACES desaturates highlights; 1.05 keeps the green from going grey. */
@@ -143,6 +149,18 @@ export function createScene(canvas, { onReady } = {}) {
   window.addEventListener("scroll", readScroll, { passive: true });
   window.addEventListener("resize", onResize);
   document.addEventListener("visibilitychange", onVisibility);
+
+  /* If the browser force-drops this context (mobile context budget, memory
+     pressure), block the default death — a frozen or white canvas — and give
+     the compositor a chance to restore. */
+  canvas.addEventListener("webglcontextlost", (e) => {
+    e.preventDefault();
+    cancelAnimationFrame(raf);
+  });
+  canvas.addEventListener("webglcontextrestored", () => {
+    onResize();
+    raf = requestAnimationFrame(frame);
+  });
   readScroll();
 
   const clock = new THREE.Clock();

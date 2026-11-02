@@ -332,5 +332,5 @@ loadStars();
 const yearEl = $("#year");
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-window.addEventListener("pagehide", () => tech?.dispose(), { once: true });
+window.addEventListener("pagehide", () => tech?.dispose?.(), { once: true });
 addEventListener("load", () => ScrollTrigger.refresh());
