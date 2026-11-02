@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rafi — Backend Systems, APIs & Automation</title>
+<meta name="description" content="Rafi (Rafix4x) — backend developer from Bangladesh building API services, bot engines and automation that run in production." />
+<meta name="theme-color" content="#08090a" />
+<meta property="og:title" content="Rafi — Backend Systems, APIs & Automation" />
+<meta property="og:description" content="API services, bot engines and automation that run in production." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%233DDC84' stroke-width='3'/%3E%3C/svg%3E" />
+<link rel="preload" href="vendor/fonts/Inter-400.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="vendor/fonts/InstrumentSerif-400i.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="vendor/fonts.css" />
+<link rel="stylesheet" href="styles.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/": "./vendor/three/addons/",
+    "gsap": "./vendor/gsap/index.js",
+    "gsap/ScrollTrigger": "./vendor/gsap/ScrollTrigger.js",
+    "gsap/SplitText": "./vendor/gsap/SplitText.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <span class="loader-pct" id="loaderPct">00</span>
+  <span class="loader-rule"></span>
+  <span class="loader-name">Rafi — Rafix4x</span>
+</div>
+
+<div class="vignette" aria-hidden="true"></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top">Rafix4x</a>
+  <nav aria-label="Main" class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#stack">Stack</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="nav-cta" href="https://github.com/Rafix4x" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+  <div class="nav-progress" id="navProgress"></div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <p class="kicker" data-intro>Backend systems · APIs · Automation</p>
+
+    <h1 class="hero-title">
+      <span class="line" data-line>Backend systems,</span>
+      <span class="line line-accent" data-line><em>APIs</em> &amp; automation</span>
+      <span class="line" data-line>built to run.</span>
+    </h1>
+
+    <div class="hero-foot">
+      <p class="hero-copy" data-intro>
+        I'm Rafi — a developer from Bangladesh building the quiet machinery behind products:
+        predictable interfaces, obvious error paths, code the next person can read.
+      </p>
+      <div class="hero-actions" data-intro>
+        <a class="link-arrow" href="#work">See the work <span aria-hidden="true">↘</span></a>
+        <a class="link-arrow muted-link" href="https://github.com/Rafix4x?tab=repositories" target="_blank" rel="noopener">Browse repositories <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <dl class="hero-meta" data-intro>
+      <div><dt>Based in</dt><dd>Bangladesh 🇧🇩</dd></div>
+      <div><dt>Role</dt><dd>Backend developer</dd></div>
+      <div><dt>Current focus</dt><dd>API services &amp; automation</dd></div>
+      <div><dt>Availability</dt><dd><span class="dot"></span>Open for work</dd></div>
+    </dl>
+  </section>
+
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee-track" data-marquee>
+      <span>Node.js</span><span>Express</span><span>Python</span><span>Go</span><span>MQTT</span>
+      <span>MongoDB</span><span>Docker</span><span>Linux</span><span>Cloudflare</span><span>Railway</span><span>Vercel</span>
+    </div>
+  </section>
+
+  <section class="stats" id="stats">
+    <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">public repositories</span></div>
+    <div class="stat"><span class="stat-num" data-count="12" data-suffix="+">0</span><span class="stat-label">services shipped</span></div>
+    <div class="stat"><span class="stat-num" data-count="99" data-suffix="%">0</span><span class="stat-label">uptime target</span></div>
+    <div class="stat"><span class="stat-num" data-count="24" data-suffix="/7">0</span><span class="stat-label">automation running</span></div>
+  </section>
+
+  <section id="about" class="section about">
+    <header class="section-head">
+      <span class="label">01 — About</span>
+      <h2 data-split>I build the quiet<br />machinery behind products.</h2>
+    </header>
+
+    <div class="about-body">
+      <div class="about-text">
+        <p class="lead" data-intro>
+          REST endpoints, event-driven services, bot engines and small utilities people deploy once
+          and forget about, because they just work.
+        </p>
+        <p class="body" data-intro>
+          My focus is backend systems and automation. I care about boring reliability and clear
+          contracts over clever abstractions — the goal is software that keeps running when nobody
+          is watching it.
+        </p>
+
+        <ol class="principles">
+          <li><span>01</span>Keep the interface clear.</li>
+          <li><span>02</span>Automate the boring parts.</li>
+          <li><span>03</span>Ship useful work before polishing the noise.</li>
+          <li><span>04</span>Learn continuously, improve every iteration.</li>
+        </ol>
+      </div>
+
+      <aside class="about-aside">
+        <div class="terminal">
+          <div class="term-bar"><i></i><i></i><i></i><span>~/rafi</span></div>
+          <pre class="term-body"><code id="typed"></code><span class="caret" aria-hidden="true"></span></pre>
+        </div>
+        <p class="aside-note">Raficore — clear interfaces, automation first.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="work" class="section work">
+    <header class="section-head">
+      <span class="label">02 — Selected work</span>
+      <h2 data-split>Things running<br />in production.</h2>
+    </header>
+
+    <ul class="projects">
+      <li class="project" data-project>
+        <a class="project-link" href="https://github.com/Rafix4x/chatgpt-api" target="_blank" rel="noopener">
+          <span class="project-index">01</span>
+          <span class="project-main">
+            <span class="project-title">chatgpt-api</span>
+            <span class="project-desc">Anonymous chatgpt.com exposed as an OpenAI-compatible API, Render-ready and drop-in for existing clients.</span>
+          </span>
+          <span class="project-meta">
+            <span class="project-tags">Go · Streaming</span>
+            <span class="project-stars" data-repo="chatgpt-api"></span>
+            <span class="project-go" aria-hidden="true">↗</span>
+          </span>
+        </a>
+      </li>
+
+      <li class="project" data-project>
+        <a class="project-link" href="https://github.com/Rafix4x/gemini-api" target="_blank" rel="noopener">
+          <span class="project-index">02</span>
+          <span class="project-main">
+            <span class="project-title">gemini-api</span>
+            <span class="project-desc">Gemini Web to OpenAI-compatible API. No cookie, no key, one-click deploy — tool calling, streaming and vision included.</span>
+          </span>
+          <span class="project-meta">
+            <span class="project-tags">Go · Docker · Vision</span>
+            <span class="project-stars" data-repo="gemini-api"></span>
+            <span class="project-go" aria-hidden="true">↗</span>
+          </span>
+        </a>
+      </li>
+
+      <li class="project" data-project>
+        <a class="project-link" href="https://github.com/Rafix4x/godfather" target="_blank" rel="noopener">
+          <span class="project-index">03</span>
+          <span class="project-main">
+            <span class="project-title">godfather</span>
+            <span class="project-desc">One command turns every coding agent you own into operator mode. Works across Claude Code, Codex, Cursor, Windsurf and more.</span>
+          </span>
+          <span class="project-meta">
+            <span class="project-tags">Python · CLI · Multi-agent</span>
+            <span class="project-stars" data-repo="godfather"></span>
+            <span class="project-go" aria-hidden="true">↗</span>
+          </span>
+        </a>
+      </li>
+
+      <li class="project is-private" data-project>
+        <span class="project-link">
+          <span class="project-index">04</span>
+          <span class="project-main">
+            <span class="project-title">Cyx <em class="badge">Private</em></span>
+            <span class="project-desc">Messenger automation platform — Node.js, MQTT and MongoDB behind an event-driven pipeline.</span>
+          </span>
+          <span class="project-meta">
+            <span class="project-tags">Node.js · MQTT · MongoDB</span>
+            <span class="project-hint">Listed for context only</span>
+          </span>
+        </span>
+      </li>
+
+      <li class="project is-private" data-project>
+        <span class="project-link">
+          <span class="project-index">05</span>
+          <span class="project-main">
+            <span class="project-title">cyx-gpt-api <em class="badge">Private</em></span>
+            <span class="project-desc">ChatGPT bridge API streaming responses over server-sent events.</span>
+          </span>
+          <span class="project-meta">
+            <span class="project-tags">Python · SSE · Bridge</span>
+            <span class="project-hint">Listed for context only</span>
+          </span>
+        </span>
+      </li>
+
+      <li class="project is-private" data-project>
+        <span class="project-link">
+          <span class="project-index">06</span>
+          <span class="project-main">
+            <span class="project-title">Ws-fca <em class="badge">Private</em></span>
+            <span class="project-desc">Facebook chat API library built on the GraphQL transport.</span>
+          </span>
+          <span class="project-meta">
+            <span class="project-tags">Node.js · GraphQL · Library</span>
+            <span class="project-hint">Listed for context only</span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="services" class="section services">
+    <header class="section-head">
+      <span class="label">03 — Services</span>
+      <h2 data-split>What I build.</h2>
+    </header>
+
+    <div class="service-list">
+      <article class="service" data-intro>
+        <h3>API services</h3>
+        <p>Focused REST endpoints and integrations with clear contracts, sane error paths and documentation people actually read.</p>
+      </article>
+      <article class="service" data-intro>
+        <h3>Automation tools</h3>
+        <p>Workflows that remove repetitive work — scheduled jobs, webhooks and bot engines that do the boring parts for you.</p>
+      </article>
+      <article class="service" data-intro>
+        <h3>Backend systems</h3>
+        <p>Event-driven services, message pipelines and data utilities designed to stay up when traffic, or life, gets noisy.</p>
+      </article>
+      <article class="service" data-intro>
+        <h3>Developer tooling</h3>
+        <p>Small, useful utilities that are easy to deploy, version and hand over — built for the next person to maintain.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack" class="section stack">
+    <header class="section-head">
+      <span class="label">04 — Stack</span>
+      <h2 data-split>Tools I reach for.</h2>
+    </header>
+
+    <div class="tech-grid" id="techGrid"></div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <span class="label">05 — Contact</span>
+    <h2 class="contact-title" data-split>Let's build something<br />that keeps running.</h2>
+    <p class="contact-copy" data-intro>
+      Backend, APIs, or automation — if it needs to run reliably, I'm interested.
+    </p>
+    <div class="contact-actions" data-intro>
+      <a class="link-arrow big" href="https://github.com/Rafix4x" target="_blank" rel="noopener">github.com/Rafix4x <span aria-hidden="true">↗</span></a>
+      <a class="link-arrow big muted-link" href="https://rafix4x.cyou" target="_blank" rel="noopener">rafix4x.cyou <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© <span id="year"></span> Rafi</span>
+  <span>Handcrafted with Three.js &amp; GSAP</span>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
