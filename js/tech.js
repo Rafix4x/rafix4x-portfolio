@@ -28,9 +28,44 @@ const SHAPES = [
    past ~8-12 (the hero scene is the oldest, so it dies first), and Mali GPUs
    present never-cleared buffers as white frames. Static images sidestep all
    of it while keeping the identical 3D look. */
+/* Keep the grid's layout when there is no GPU at all: a device without WebGL
+   must still see twelve labelled cards, not an empty section. */
+function glyphFallback(container) {
+  TECH.forEach((name, i) => {
+    const card = document.createElement("div");
+    card.className = "tech";
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 34 34");
+    svg.setAttribute("width", "34");
+    svg.setAttribute("height", "34");
+    svg.setAttribute("aria-hidden", "true");
+    const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    poly.setAttribute("points", [0, 1, 2, 3, 4, 5, 6].map(function (k) {
+      var a = (k / 7) * Math.PI * 2 - Math.PI / 2;
+      return (17 + Math.cos(a) * 11).toFixed(1) + "," + (17 + Math.sin(a) * 11).toFixed(1);
+    }).join(" "));
+    poly.setAttribute("fill", "none");
+    poly.setAttribute("stroke", i % 3 === 2 ? "#f2a65a" : "#3ddc84");
+    poly.setAttribute("stroke-opacity", ".55");
+    poly.setAttribute("stroke-width", "1.2");
+    svg.append(poly);
+    const label = document.createElement("span");
+    label.textContent = name;
+    card.append(svg, label);
+    container.append(card);
+  });
+  return { dispose() {} };
+}
+
 export function buildTechGrid(container) {
   const size = 136; /* supersampled 2x of the 68px display box */
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, preserveDrawingBuffer: true });
+  } catch (err) {
+    console.error("Tech grid: no WebGL, using static glyphs", err);
+    return glyphFallback(container);
+  }
   renderer.setPixelRatio(1);
   renderer.setSize(size, size, false);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;

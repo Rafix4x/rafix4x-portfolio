@@ -13,8 +13,9 @@
 <link rel="preload" href="vendor/fonts/InstrumentSerif-400i.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="vendor/fonts.css" />
 <link rel="stylesheet" href="styles.css" />
+<script>window.esmsInitOptions={shimMode:true};</script>
 <script async src="vendor/es-module-shims.js"></script>
-<script type="importmap">
+<script type="importmap-shim">
 {
   "imports": {
     "three": "./vendor/three/three.module.js",
@@ -280,7 +281,7 @@
   <span>Handcrafted with Three.js &amp; GSAP</span>
 </footer>
 
-<script type="module" src="js/main.js"></script>
+<script type="module-shim" src="js/main.js"></script>
 <script>
 /* Last-resort fail-safe (outside modules): if the app never boots — old browser,
    import-map failure, blocked JS — strip the loader and show the content. */
@@ -292,9 +293,9 @@
     document.body && (document.body.style.overflow = "");
   }
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { setTimeout(forceReveal, 4200); });
+    document.addEventListener("DOMContentLoaded", function () { setTimeout(forceReveal, 1800); });
   } else {
-    setTimeout(forceReveal, 4200);
+    setTimeout(forceReveal, 1800);
   }
 })();
 </script>
